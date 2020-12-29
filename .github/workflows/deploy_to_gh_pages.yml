@@ -9,6 +9,7 @@ jobs:
       - name: Build
         run: |
           apt-get update -q && apt-get install -y -q yarnpkg
+          (cd frontend; yarnpkg install --non-interactive)
           (cd frontend; PUBLIC_URL="https://anuejn.github.io/fpl.zip/" yarnpkg build)
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v2
