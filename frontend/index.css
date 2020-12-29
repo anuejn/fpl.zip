@@ -1,0 +1,15 @@
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+b {
+    font-weight: bold;
+}
+
+h1 {
+    font-weight: lighter;
+    text-align: center;
+    padding: 20px;
+}

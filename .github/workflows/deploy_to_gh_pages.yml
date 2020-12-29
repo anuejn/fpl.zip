@@ -10,7 +10,7 @@ jobs:
         run: |
           apt-get update -q && apt-get install -y -q yarnpkg
           (cd frontend; yarnpkg install --non-interactive)
-          (cd frontend; PUBLIC_URL="https://anuejn.github.io/fpl.zip/" yarnpkg build)
+          (cd frontend; PUBLIC_URL="https://anuejn.github.io/fpl.zip/" yarnpkg build)0
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
