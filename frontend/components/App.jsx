@@ -1,17 +1,33 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 
 import {useSelection} from "./use_selection";
 import {BsPlayFill, BsDownload} from "react-icons/bs";
+import {MdShare} from "react-icons/md";
 import {ctx, useVoskResult} from "./use_vosk_result";
 import lamejs from 'lamejs';
 import { saveAs } from 'file-saver';
 
 export default function App(props) {
-  if (!window.location.hash) {
-    window.location.hash = "https://files.niemo.de/kondome.mp3.json"
+  const params = new URLSearchParams(window.location.search);
+
+  if (!params.get("src")) {
+    window.location += "?src=https://files.niemo.de/kondome.mp3.json"
   }
-  const voskResult = useVoskResult(window.location.hash.substr(1));
+
+  const voskResult = useVoskResult(params.get("src"));
   const selection = useSelection();
+
+  const textRef = useCallback(node => {
+    if (window.location.hash && node !== null) {
+      const [start, end] = window.location.hash.substr(1).split("-");
+      console.log(node)
+      let range = new Range();
+      range.setStart(node.firstChild, start);
+      range.setEnd(node.firstChild, end);
+      window.getSelection().addRange(range);
+    }
+  }, [])
+
 
   if (voskResult) {
     const tagged_data = voskResult.result.reduce((acc, curr) => {
@@ -68,6 +84,13 @@ export default function App(props) {
           >
             <BsDownload />
           </button>
+          <button
+            onClick={() => {
+              window.location.hash = selection.startOffset + "-" + selection.endOffset;
+            }}
+          >
+            <MdShare />
+          </button>
         </div>
       )
     }
@@ -77,6 +100,7 @@ export default function App(props) {
       <>
         <h1>fpl - <b>f</b>ind & <b>pl</b>ay</h1>
         <div
+          ref={textRef}
           style={{
             margin: 'auto',
             maxWidth: '1000px',
