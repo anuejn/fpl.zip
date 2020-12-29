@@ -43,7 +43,7 @@ export default function App(props) {
     if (selection) {
       const rect = selection.getBoundingClientRect();
       console.log(rect)
-      const words = tagged_data.filter(word => word.startIndex >= selection.startOffset && word.endIndex - 1 <= selection.endOffset);
+      const words = tagged_data.filter(word => word.endIndex - 1 > selection.startOffset && word.startIndex < selection.endOffset);
       const [start, stop] = [Math.min(...words.map(x => x.start)), Math.max(...words.map(x => x.end))]
       toolbar = (
         <div
