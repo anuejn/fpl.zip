@@ -11,9 +11,10 @@ jobs:
           apt-get update -q && apt-get install -y -q yarnpkg
           (cd frontend; yarnpkg install --non-interactive)
           (cd frontend; PUBLIC_URL="https://anuejn.github.io/fpl.zip/" yarnpkg build)
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./frontend/dist
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: ./frontend/dist
+          CLEAN: true
