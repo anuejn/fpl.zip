@@ -7,7 +7,10 @@ import lamejs from 'lamejs';
 import { saveAs } from 'file-saver';
 
 export default function App(props) {
-  const voskResult = useVoskResult('https://files.niemo.de/kondome.mp3.json');
+  if (!window.location.hash) {
+    window.location.hash = "https://files.niemo.de/kondome.mp3.json"
+  }
+  const voskResult = useVoskResult(window.location.hash.substr(1));
   const selection = useSelection();
 
   if (voskResult) {
