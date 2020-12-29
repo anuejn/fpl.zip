@@ -48,7 +48,7 @@ export default function App(props) {
       toolbar = (
         <div
           style={{
-            position: 'absolute',
+            position: 'fixed',
             top: rect.top,
             right: 0,
           }}
