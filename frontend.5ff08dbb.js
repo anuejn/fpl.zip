@@ -59,4 +59,4 @@ module.exports=function(n){return new Promise(function(e,o){var r=document.creat
 },{}],0:[function(require,module,exports) {
 var b=require("wl3f");b.register("js",require("PrmA"));
 },{}]},{},[0,"deHo"], null)
-//# sourceMappingURL=https://anuejn.github.io/fpl.zip/frontend.6c26f2c4.js.map
+//# sourceMappingURL=https://anuejn.github.io/fpl.zip/frontend.5ff08dbb.js.map
