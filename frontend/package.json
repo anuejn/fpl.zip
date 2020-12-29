@@ -19,6 +19,6 @@
   "scripts": {
     "start": "parcel index.html",
     "format": "prettier --write '*.{js,jsx,ts,tsx}'",
-    "build": "NODE_ENV=production parcel build index.html"
+    "build": "NODE_ENV=production parcel build index.html --public-url \"$PUBLIC_URL\" --detailed-report"
   }
 }

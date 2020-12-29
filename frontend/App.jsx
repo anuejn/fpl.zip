@@ -6,7 +6,7 @@ import useSound from "use-sound";
 const audioCtx = new AudioContext();
 
 export default function App(props) {
-  const { loading, error, data = [] } = useFetch('http://localhost:3000/kondome.flv.json', {}, [])
+  const { loading, error, data = [] } = useFetch('https://files.niemo.de/kondome.mp3.json', {}, [])
 
   const [timeRange, setTimeRange] = useState([0, 3000]);
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function App(props) {
     }
   })
 
-  const [play, {sound}] = useSound('http://localhost:3000/kondome.mp3', {
+  const [play, {sound}] = useSound('https://files.niemo.de/kondome.mp3', {
     onload: () => console.info("sound loaded"),
     onend: (a, b, c) => {
       console.info('Sound ended!', a, b, c);
