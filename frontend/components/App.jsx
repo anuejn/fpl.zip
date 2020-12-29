@@ -11,7 +11,7 @@ export default function App(props) {
   const params = new URLSearchParams(window.location.search);
 
   if (!params.get("src")) {
-    window.location += "?src=https://files.niemo.de/kondome.mp3.json"
+    window.location += "?src=https://files.niemo.de/fpl/kondome.mp3.json"
   }
 
   const voskResult = useVoskResult(params.get("src"));
