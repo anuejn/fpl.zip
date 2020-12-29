@@ -30,4 +30,6 @@ while True:
         pass
 
 with open("{}.json".format(sys.argv[1]), "w") as f:
-    f.write(rec.FinalResult())
+    result = json.loads(rec.FinalResult())
+    result["mediaUrl"] = sys.argv[1]
+    f.write(json.dumps(result, indent=4))
