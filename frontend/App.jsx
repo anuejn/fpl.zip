@@ -25,7 +25,7 @@ export default function App(props) {
           return [{startIndex: lastIndex, endIndex: lastIndex + curr.word.length + 1, ...curr}, ...acc]
         }, []).reverse()
 
-        const words = tagged_data.filter(word => word.startIndex >= range.startOffset && word.endIndex - 1 <= range.endOffset);
+        const words = tagged_data.filter(word => word.endIndex - 1 > range.startOffset && word.startIndex < range.endOffset);
         console.log(words.map(x => x.word))
         const [start, end] = [Math.min(...words.map(x => x.start)), Math.max(...words.map(x => x.end))]
         setTimeRange([start * 1000, (end - start) * 1000])
