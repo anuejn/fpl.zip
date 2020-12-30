@@ -6,6 +6,7 @@ import os
 import wave
 import subprocess
 import json
+import pathlib
 
 SetLogLevel(0)
 
@@ -13,12 +14,16 @@ if not os.path.exists("model"):
     print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
     exit (1)
 
+infile = sys.argv[2]
+outfile = "{}.json".format(infile)
+model_path = pathlib.Path(__file__).parent / sys.argv[1]
+
 sample_rate=16000
-model = Model("model")
+model = Model(str(model_path))
 rec = KaldiRecognizer(model, sample_rate)
 
 process = subprocess.Popen(['ffmpeg', '-loglevel', 'quiet', '-i',
-                            sys.argv[1],
+                            infile,
                             '-ar', str(sample_rate) , '-ac', '1', '-f', 's16le', '-'],
                             stdout=subprocess.PIPE)
 
@@ -29,7 +34,7 @@ while True:
     if rec.AcceptWaveform(data):
         pass
 
-with open("{}.json".format(sys.argv[1]), "w") as f:
+with open(outfile, "w") as f:
     result = json.loads(rec.FinalResult())
-    result["mediaUrl"] = sys.argv[1]
+    result["mediaUrl"] = infile
     f.write(json.dumps(result, indent=4))
