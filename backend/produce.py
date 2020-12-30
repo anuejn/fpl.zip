@@ -10,13 +10,14 @@ import pathlib
 
 SetLogLevel(0)
 
-if not os.path.exists("model"):
-    print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
-    exit (1)
 
 infile = sys.argv[2]
 outfile = "{}.json".format(infile)
 model_path = pathlib.Path(__file__).parent / sys.argv[1]
+
+if not model_path.exists():
+    print ("Please download a model from https://alphacephei.com/vosk/models and unpack in the current folder and pass as first argument.")
+    exit (1)
 
 sample_rate=16000
 model = Model(str(model_path))
