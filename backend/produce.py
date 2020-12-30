@@ -10,10 +10,13 @@ import pathlib
 
 SetLogLevel(0)
 
+if not len(sys.argv) == 3:
+    print("usage: produce.py MODEL_FOLDER LANG IN_FILE")
 
-infile = sys.argv[2]
-outfile = "{}.json".format(infile)
 model_path = pathlib.Path(__file__).parent / sys.argv[1]
+lang = sys.argv[2]
+infile = sys.argv[3]
+outfile = "{}.json".format(infile)
 
 if not model_path.exists():
     print ("Please download a model from https://alphacephei.com/vosk/models and unpack in the current folder and pass as first argument.")
@@ -38,4 +41,5 @@ while True:
 with open(outfile, "w") as f:
     result = json.loads(rec.FinalResult())
     result["mediaUrl"] = infile
+    result["language"] = lang
     f.write(json.dumps(result, indent=4))
