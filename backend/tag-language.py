@@ -2,7 +2,7 @@ import sys
 import json
 
 if len(sys.argv) < 2:
-    print("usage: tag-language.py [LANG] [JSON_FILE ...]")
+    print("usage: tag-language.py LANG [JSON_FILE...]")
     sys.exit(1)
 
 lang = sys.argv[1]
