@@ -13,6 +13,8 @@ export function useVoskResult(json_url) {
     console.log("json", json)
     if (json.mediaUrl.startsWith("./")) {
       audioFilePath = jsonUrlBase + json.mediaUrl.substr(2);
+    } else if (json.mediaUrl.startsWith("http")) {
+      audioFilePath = json.mediaUrl;
     } else {
       audioFilePath = jsonUrlBase + json.mediaUrl;
     }
