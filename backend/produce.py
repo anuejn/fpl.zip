@@ -10,7 +10,7 @@ import pathlib
 
 SetLogLevel(0)
 
-if not len(sys.argv) == 3:
+if not len(sys.argv) == 4:
     print("usage: produce.py MODEL_FOLDER LANG IN_FILE")
     sys.exit(1)
 
