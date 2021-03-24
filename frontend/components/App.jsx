@@ -11,7 +11,7 @@ export default function App(props) {
   const params = new URLSearchParams(window.location.search);
 
   if (!params.get("src")) {
-    window.location += "?src=https://anuejn.github.io/fpl.zip/?src=https://files.niemo.de/fpl/public_interest_pdcst_epsd_1_cut.mp3.json"
+    window.location += "?src=https://files.niemo.de/fpl/public_interest_pdcst_epsd_1_cut.mp3.json"
   }
 
   const voskResult = useVoskResult(params.get("src"));
